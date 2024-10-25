@@ -4,6 +4,9 @@
 
 //#define TEST_TIMING_WITH_PB1 //ToDo: to be removed
 
+#define ADC_CURR_MIN 511U
+#define ADC_CURR_TRESHOLD 8U
+
 char  buf[BUFSIZE];
 
 void setup() 
@@ -22,13 +25,16 @@ void setup()
   DisplayClear();
 }
 
-
 void loop() 
 {
   uint16_t test_voltage_in = analogRead(A2);
   uint16_t test_current_in = analogRead(A3);
   uint16_t test_voltage_out = map(test_voltage_in,0,1023,0,250);
-  uint16_t test_current_out = map(test_current_in,0,1023,0,1000);
+  uint16_t test_current_out = 0x00U;
+  if((ADC_CURR_MIN + ADC_CURR_TRESHOLD) <= test_current_in)
+  {
+    test_current_out = map(test_current_in,ADC_CURR_MIN,1023,0,1000);
+  }
 
   DisplayVoltage(test_voltage_out, buf);
 

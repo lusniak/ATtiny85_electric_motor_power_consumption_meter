@@ -12,6 +12,7 @@
 #define TRUE 0x01U
 #define FALSE 0x00U
 
+//#define TEST_TIMING_WITH_PB1 //ToDo: to be removed
 //#define DISABLE_EEPROM_WHILE_TESTING
 
 uint32_t ms_old = 0x00U; /* Previous miliseconds */
@@ -33,7 +34,7 @@ uint16_t Consumption(uint16_t current)
   if(ms - ms_old >= CONSUMPTION_PERIOD_MS)
   {   
     #ifndef TEST_TIMING_WITH_PB1
-    if(LOW == digitalRead(PB1))
+    if(HIGH == digitalRead(PB1))
     {
       button++;
     }
@@ -56,7 +57,8 @@ uint16_t Consumption(uint16_t current)
     DisplayReset();
     ConsumptionReset();
     button = 0x00U;
-    delay(500);
+    delay(1000);
+    DisplayClear();
   }
   #endif
   Ah = As/AS_AH_RATIO;
