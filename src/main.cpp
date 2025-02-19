@@ -5,7 +5,8 @@
 //#define TEST_TIMING_WITH_PB1 //ToDo: to be removed
 
 #define ADC_CURR_MIN 511U
-#define ADC_CURR_TRESHOLD 8U
+#define ADC_CURR_MAX 1023U
+#define ADC_CURR_TRESHOLD 1U
 
 char  buf[BUFSIZE];
 
@@ -31,7 +32,15 @@ void loop()
   uint16_t test_current_in = analogRead(A3);
   uint16_t test_voltage_out = map(test_voltage_in,0,1023,0,250);
   uint16_t test_current_out = 0x00U;
-  if((ADC_CURR_MIN + ADC_CURR_TRESHOLD) <= test_current_in)
+  if(ADC_CURR_MAX < test_current_in)
+  {
+    test_current_out = 1000;
+  }
+  else if((ADC_CURR_MIN + ADC_CURR_TRESHOLD) >= test_current_in)
+  {
+    test_current_out = 0;
+  }
+  else
   {
     test_current_out = map(test_current_in,ADC_CURR_MIN,1023,0,1000);
   }
