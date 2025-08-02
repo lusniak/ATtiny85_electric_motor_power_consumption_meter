@@ -10,5 +10,5 @@ Informations are displayed on OLED 128x64px display controlled over I2C bus.
 
 
 
-![](https://github.com/lusniak/attiny85_digispark_resurrection/blob/main/device_ready.PNG)
+![](https://github.com/lusniak/attiny85_digispark_resurrection/blob/main/device_ready.png)
 
