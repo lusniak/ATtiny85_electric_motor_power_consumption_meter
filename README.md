@@ -1,6 +1,8 @@
 
 # 12V battery power meter
 
+Measures DC current up to 100Amps. Useful for electric boat motor.
+
 Device based on Attiny85 which measures voltage, current, calculates power and power consumption in time of 12V battery.
 Device shall be connected in series with battery and load e.g. boat trolling motor and battery + ground wire for voltage measurement.
 Device is powered from measured battery. It uses non-volatile memory to store calculated power consumption (specified in Ah's) between power cycles.
